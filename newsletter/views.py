@@ -1,3 +1,12 @@
 from django.shortcuts import render
+from .forms import SingUpForm
 
-# Create your views here.
+
+def home(request):
+    title = 'Wellcome'
+    if request.user.is_authenticated():
+        title = "My Title %s" % (request.user)
+    context = {
+        'template_title': title,
+    }
+    return render(request, 'newsletter/home.html', context)
