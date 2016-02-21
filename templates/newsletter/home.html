@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-</head>
-<body>
-  <h1>{{ template_title }}</h1>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block head_title %}Welcome | {{ block.super }}{% endblock %}
+
+{% block jumbotron %}
+
+  {{ block.super }}
+
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-sm-6 col-md-3">
+    <h1>{{ title }}</h1>
+
+    <form action="" method="POST">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <input type="submit" name="name" value="ログイン" class="btn btn-lg btn-primary">
+    </form>
+  </div>
+</div>
+
+{% endblock %}
