@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.core.mail import send_mail
 from django.conf import settings
@@ -5,10 +6,11 @@ from .forms import (
     SingUpForm,
     ContactForm,
 )
+from .models import SingUp
 
 
 def home(request):
-    title = 'Wellcome'
+    title = 'Sign Up Now'
     form = SingUpForm(request.POST or None)
     context = {
         'title': title,
@@ -16,7 +18,7 @@ def home(request):
     }
 
     if form.is_valid():
-        # print request.POST['email'] not recommended
+        # print request.POST['email'] # not recommended
         instance = form.save(commit=False)
 
         full_name = form.cleaned_data.get('full_name')
@@ -27,6 +29,15 @@ def home(request):
         instance.save()
         context = {
             'title': 'Thank you'
+        }
+
+    if request.user.is_authenticated() and request.user.is_staff:
+        queryset = SingUp.objects.all().order_by('-timestamp')
+        # 特定の文字列が含まれている物を探す
+        # queryset = SingUp.objects.all().order_by(
+        #     '-timestamp').filter(full_name__icontains='2')
+        context = {
+            'queryset': queryset,
         }
     return render(request, 'newsletter/home.html', context)
 
@@ -61,3 +72,8 @@ def contact(request):
         'title': title,
     }
     return render(request, 'newsletter/forms.html', context)
+
+
+def about(request):
+
+    return render(request, 'newsletter/about.html', {})
