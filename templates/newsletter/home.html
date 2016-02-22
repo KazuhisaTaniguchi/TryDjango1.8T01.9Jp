@@ -1,26 +1,73 @@
 {% extends "base.html" %}
-
+{% load staticfiles %}
 {% load crispy_forms_tags %}
 
 {% block head_title %}Welcome | {{ block.super }}{% endblock %}
 
+{% block style %}
+<style>
+.jumbotron{
+  background-color: #0e3d14;
+  color: #fff
+}
+.navbar-static-top{
+  margin-bottom: 0px !important;
+}
+</style>
+{% endblock %}
+
 {% block jumbotron %}
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class='col-sm-6'>
+        <h1>Try Django 1.8</h1>
+        <p>The MVP Landing project is designed to get your project started. The goal is to help you launch as soon as possible with the least amount of investment using time or money. Join Us today.</p>
+        <p>
+        <a class="btn btn-lg btn-primary" href="" role="button">Join Us &raquo;</a>
+        </p>
+      </div>
+      <div class='col-sm-6'>
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/3MteSlpxCpo"></iframe>
+        </div>
+      </div>
 
-  {{ block.super }}
-
+    </div>
+  </div>
+</div>
 {% endblock %}
 
 {% block content %}
 <div class="row">
-  <div class="col-sm-6 col-md-3">
-    <h1>{{ title }}</h1>
 
-    <form action="" method="POST">
+  <div class="col-sm-3 pull-right">
+
+    <p class='lead text-align'>{{ title }}</p>
+
+    <form method='POST' action=''>
       {% csrf_token %}
       {{ form|crispy }}
-      <input type="submit" name="name" value="ログイン" class="btn btn-lg btn-primary">
+
+      <input class='btn btn-primary' type='submit' value='Sign Up' />
+
     </form>
   </div>
+
+	<div class='col-sm-3 text-align'>
+    <p class='lead'>Built with Django &amp; Bootstrap</p>
+    <img class='img-responsive' src="{% static 'img/marketing1.jpg' %}" alt="">
+  </div>
+
+  <div class='col-sm-3'>
+    <p class='lead text-align'>Created for Starters of all kinds. </p>
+  </div>
+
+  <div class='col-sm-3'>
+    <p class='lead text-align'>Always Open Source</p>
+  </div>
+
 </div>
+
 
 {% endblock %}

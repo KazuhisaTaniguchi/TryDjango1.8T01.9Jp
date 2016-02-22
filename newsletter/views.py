@@ -32,6 +32,7 @@ def home(request):
 
 
 def contact(request):
+    title = 'Contact Us'
     form = ContactForm(request.POST or None)
 
     if form.is_valid():
@@ -52,10 +53,11 @@ def contact(request):
             contact_message,
             from_email,
             [to_email],
-            fail_silently=False,
+            fail_silently=True,
         )
 
     context = {
         'form': form,
+        'title': title,
     }
     return render(request, 'newsletter/forms.html', context)
