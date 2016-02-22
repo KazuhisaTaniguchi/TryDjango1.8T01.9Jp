@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # third party apps
     'crispy_forms',
+    'registration',
     # myApps
     'newsletter',
 ]
@@ -146,4 +147,10 @@ STATIC_ROOT = 'staticfiles'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media'
 
+# CRISPY
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+# REGISTRATION Redux
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = '/'
+SITE_ID = 1

@@ -15,12 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from . import views
 # from django.conf.urls.static import static
 # from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('newsletter.urls', namespace='newsletter')),
+    url(r'^about/$', views.about, name='about'),
+    url(r'^accounts/', include('registration.backends.default.urls')),
 ]
 # if settings.DEBUG:
 #     urlpatterns += static(

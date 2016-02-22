@@ -30,26 +30,25 @@
       <script src="{% static 'js/html5shiv.min.js' %}"></script>
       <script src="{% static 'js/respond.min.js' %}"></script>
     <![endif]-->
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet">
+
+      {% block style %}
+
+      {% endblock %}
   </head>
 
   <body>
   {% include 'navbar.html' %}
 
-    <div class="container">
     {% block jumbotron %}
-      <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <h1>Navbar example</h1>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
-        </p>
-      </div>
-    {% endblock %}
-    {% block content %}
 
     {% endblock %}
+    <div class="container">
+            {% block content %}
+
+            {% endblock %}
+
+
     </div> <!-- /container -->
 
 
